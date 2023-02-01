@@ -8,12 +8,12 @@ for i in `ls $1`
 do
     if [ -x $i ]
     then 
-	   echo"exec = $exec+1" 
+	   let "exec+=1" 
 	   echo $i >> list_exec.txt
 
     else 
-	  echo"no_exec = $no_exec + 1"
-	  echo $i >> list_non_exec.txt
+	   let "no_exec+=1"
+	   echo $i >> list_non_exec.txt
     fi
 
 done
