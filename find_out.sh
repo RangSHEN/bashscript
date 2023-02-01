@@ -1,16 +1,23 @@
 #!/bin/bash
+echo "files exec" > list_exec.txt
+echo "files no exec" > list_non_exec.txt
 	
-let exec=0
-let no_exec=0
-let dir=0
+exec=0
+no_exec=0
 for i in `ls $1`
-    do
-    if [ -d $1/$i ]
-    then echo $i is exec; let dir++; echo $i >> directories.txt
-    elif [ -x $1/$i ]
-    then echo $i is dir; let exec++; echo $i >> executables.txt 
-    else
-    let no_exec++
+do
+    if [ -x $i ]
+    then 
+	   echo"exec = $exec+1" 
+	   echo $i >> list_exec.txt
+
+    else 
+	  echo"no_exec = $no_exec + 1"
+	  echo $i >> list_non_exec.txt
     fi
+
 done
-echo $exec fichiers sont exécutables, $dir sont des dossiers
+
+echo"numbers of exec:$exec"
+echo"numbers of no exec:$no_exec"
+	   
